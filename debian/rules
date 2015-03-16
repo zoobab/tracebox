@@ -3,8 +3,10 @@
 export DH_VERBOSE=1
 
 %:
-	dh $@  --with autotools-dev
+#	dh $@  --with autotools-dev
+	dh --with autoreconf $@
+
+override_dh_usrlocal:
 
 override_dh_auto_configure:
-	sh bootstrap.sh
-	dh_auto_configure
+	./configure --disable-tests
